@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "8aoTs6w7e/LswpMgTwWjGxMi/WBTKimVWsOT+JnzCc7Z/6t830os84QuMUxy0OVxxZAo3O8H9Ezm1FHOY+fHRg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\kcowh\\Repos\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\kcowh\\.nuget\\packages\\csvhelper\\27.2.1\\csvhelper.27.2.1.nupkg.sha512"
+  ],
+  "logs": []
+}
