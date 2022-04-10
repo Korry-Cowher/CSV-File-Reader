@@ -19,15 +19,15 @@ namespace CSV_File_Reader
             FileUtilities fileUtilities = new FileUtilities();
             int fileIndexSelected;
 
-            Console.WriteLine("CSV Sorter\n");
-            Console.WriteLine("Please Select File To Sort");
-
+            Console.WriteLine("CSV Sorter");
             List<string> fileOptions = fileUtilities.GetFileOptions();
+            OutputFilesToSelect(fileOptions);
 
 
             while (true)
             {
                 Console.Write("\nSelect File: ");
+
                 try
                 {
                     fileIndexSelected = Int32.Parse(Console.ReadLine());

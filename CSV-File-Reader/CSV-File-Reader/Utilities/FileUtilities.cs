@@ -17,8 +17,9 @@ namespace CSV_File_Reader.Utilities
         /// <returns></returns>
         public string[] LoadCSV(string filename)
         {
-            // Get the file's text.
-            string whole_file = System.IO.File.ReadAllText(filename);
+            
+            string selectedFile = System.IO.File.ReadAllText(Constants.FilePaths.CSVFolder + "/" + filename);
+       
 
             return null;
 
@@ -31,7 +32,8 @@ namespace CSV_File_Reader.Utilities
         public List<string> GetFileOptions()
         {
             List<string> trimmedFileOptions = new List<string>();
-            string[] fileOptions = Directory.GetFiles("../../../CSVFileOptions", "*.csv");
+            string[] fileOptions = Directory.GetFiles(Constants.FilePaths.CSVFolder, "*.csv");
+
             foreach (string fileOption in fileOptions)
             {
                 string trimmedFile = fileOption.Remove(0, fileOption.LastIndexOf("\\") + 1);
