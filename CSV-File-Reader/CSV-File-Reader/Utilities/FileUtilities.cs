@@ -15,13 +15,12 @@ namespace CSV_File_Reader.Utilities
         /// </summary>
         /// <param name="filename"></param>
         /// <returns></returns>
-        public string[] LoadCSV(string filename)
+        public string LoadCSV(string filename)
         {
             
-            string selectedFile = System.IO.File.ReadAllText(Constants.FilePaths.CSVFolder + "/" + filename);
-       
-
-            return null;
+            string selectedFileContents = System.IO.File.ReadAllText(Constants.FilePaths.CSVFolder + "/" + filename);
+            
+            return selectedFileContents;
 
         }
 
@@ -43,4 +42,4 @@ namespace CSV_File_Reader.Utilities
             return trimmedFileOptions;
         }
     }
-    }
+}

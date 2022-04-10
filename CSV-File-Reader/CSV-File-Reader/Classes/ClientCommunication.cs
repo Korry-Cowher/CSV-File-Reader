@@ -1,4 +1,5 @@
-﻿using CSV_File_Reader.Utilities;
+﻿using CSV_File_Reader.Classes;
+using CSV_File_Reader.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,25 +18,74 @@ namespace CSV_File_Reader
         public string SelectFile()
         {
             FileUtilities fileUtilities = new FileUtilities();
-            int fileIndexSelected;
 
             Console.WriteLine("CSV Sorter");
-            List<string> fileOptions = fileUtilities.GetFileOptions();
-            OutputFilesToSelect(fileOptions);
 
+            string[] fileOptions = fileUtilities.GetFileOptions().ToArray();
+            int indexSelected = GetUserSelection(fileOptions, "Please select file");
+
+            return fileOptions[indexSelected];
+        }
+
+        public void generateRequestedOutput(OutputSelection outputSelection)
+        {
+            FileUtilities fileUtilities = new FileUtilities();
+            string chosenFileContents = fileUtilities.LoadCSV(outputSelection.FileName);
+        }
+
+        public string SelectTypeToSort()
+        {
+            string[] sortByOptions = new [] { "alpha", "numeric", "both" };
+            int indexSelected = GetUserSelection(sortByOptions, "Please select values to sort");
+
+            return sortByOptions[indexSelected];
+        }
+
+        public string SelectSortOrder()
+        {
+            string[] sortByOptions = new[] { "ascending", "descending" };
+            int indexSelected = GetUserSelection(sortByOptions, "Please select values to sort");
+
+            return sortByOptions[indexSelected];
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void OutputSelectOptions(string[] availableValues)
+        {
+
+            Console.WriteLine("\nSelect from available options");
+
+            for (int i = 0; i <= availableValues.Length - 1; i++)
+            {
+                Console.WriteLine();
+                Console.WriteLine(i + 1 + ": " + availableValues[i] + "\n");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="availableValues"></param>
+        /// <param name="promptMessage"></param>
+        /// <returns></returns>
+        private int GetUserSelection(string[] availableValues, string promptMessage)
+        {
+            int fileIndexSelected;
+            Console.Write("\n" + promptMessage + ": \n");
+            OutputSelectOptions(availableValues);
 
             while (true)
-            {
-                Console.Write("\nSelect File: ");
-
+            {    
                 try
                 {
                     fileIndexSelected = Int32.Parse(Console.ReadLine());
                     fileIndexSelected = fileIndexSelected - 1;
 
-                    if (fileIndexSelected < 0 || fileIndexSelected >= fileOptions.Count)
+                    if (fileIndexSelected < 0 || fileIndexSelected >= availableValues.Length)
                     {
-                        OutputFilesToSelect(fileOptions);
+                        OutputSelectOptions(availableValues);
                     }
                     else
                     {
@@ -44,66 +94,18 @@ namespace CSV_File_Reader
                 }
                 catch
                 {
-                    OutputFilesToSelect(fileOptions);
+                    OutputSelectOptions(availableValues);
                 }
             }
-
-            return fileOptions[fileIndexSelected];
+            return fileIndexSelected;
         }
-
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public string SelectSortType()
+        private string[] FileContentsToList()
         {
-            OutputSortTypes();
-
             return null;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="fileOptions"></param>
-        private void OutputFilesToSelect(List<String> fileOptions)
-        {
-            Console.WriteLine("\nPlease select available options");
-            for (int i = 0; i < fileOptions.Count; i++)
-            {
-                Console.WriteLine();
-                Console.WriteLine(i + 1 + ": " + fileOptions[i]);
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private void OutputSortTypes()
-        {
-            string[] sortTypes = new string[3] { "alpha", "numeric", "both" };
-
-            Console.WriteLine("\nPlease select type to sort");
-            for (int i = 0; i <= sortTypes.Length - 1; i++)
-            {
-                Console.WriteLine();
-                Console.WriteLine(i + 1 + ": " + sortTypes[i]);
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private void OutputSortOrderOptions()
-        {
-            string[] sortOrderType = new string[2] { "ascending", "descending" };
-
-            Console.WriteLine("\nPlease select order to sort by");
-            for (int i = 0; i <= sortOrderType.Length - 1; i++)
-            {
-                Console.WriteLine();
-                Console.WriteLine(i + 1 + ": " + sortOrderType[i]);
-            }
         }
     }
 }

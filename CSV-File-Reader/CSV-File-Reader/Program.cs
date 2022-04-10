@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using CSV_File_Reader.Utilities;
 using System.Collections.Generic;
+using CSV_File_Reader.Classes;
 
 namespace CSV_File_Reader
 {
@@ -15,8 +16,12 @@ namespace CSV_File_Reader
             FileUtilities fileUtilities = new FileUtilities();
             ClientCommunication clientCommunication = new ClientCommunication();
 
-            string selectedFileName = clientCommunication.SelectFile();
-            fileUtilities.LoadCSV(selectedFileName);
+            OutputSelection outputSelection = new OutputSelection();
+            outputSelection.FileName = clientCommunication.SelectFile();
+            outputSelection.SortBy = clientCommunication.SelectTypeToSort();
+            outputSelection.SortOrder = clientCommunication.SelectSortOrder();
+
+            clientCommunication.generateRequestedOutput(outputSelection);
         }
     }
 }
