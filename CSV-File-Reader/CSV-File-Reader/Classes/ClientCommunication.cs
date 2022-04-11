@@ -160,6 +160,7 @@ namespace CSV_File_Reader
 
             fileContentsList.ForEach(fileContents =>
             {
+                //change to if else
                 switch (fileContents.Contains("'") || fileContents.Contains("\""))
                 {
                     case true:
@@ -176,8 +177,6 @@ namespace CSV_File_Reader
                             alphaList.Add(fileContents);
                         }
                         break;
-                    default:
-                        throw new Exception("Check CSV data,/n strings must be displayed inside ''");
                 }
             });
 
