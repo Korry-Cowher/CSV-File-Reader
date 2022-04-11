@@ -13,5 +13,6 @@ namespace CSV_File_Reader.Classes
         public string FileName { get; set; }
         public string SortBy { get; set; } = "both";
         public string SortOrder { get; set; } = "ascending";
+        public string FileContents { get; set; }
     }
 }
