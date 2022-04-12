@@ -116,9 +116,9 @@ namespace CSV_File_Reader
             int fileIndexSelected = 0;
             Console.Write("\n" + promptMessage + ": \n");
             OutputSelectOptions(availableValues);
-            bool acceptedInput = false;
+            bool nonAcceptedInput = true;
 
-            while (!acceptedInput)
+            while (nonAcceptedInput)
             {
                 string inputSelected = Console.ReadLine();
 
@@ -133,7 +133,7 @@ namespace CSV_File_Reader
                     }
                     else
                     {
-                        acceptedInput = true;
+                        nonAcceptedInput = false;
                     }
                 } 
                 else
