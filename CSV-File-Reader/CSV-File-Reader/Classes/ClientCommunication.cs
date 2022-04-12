@@ -39,7 +39,7 @@ namespace CSV_File_Reader
 
             try
             {
-                finalSortedList = FileContentsToRequestedList(outputSelection);
+                finalSortedList = fileUtilities.FileContentsToRequestedList(outputSelection);
             }
             catch (Exception ex)
             {
@@ -52,7 +52,7 @@ namespace CSV_File_Reader
             if (finalSortedList.Count > 0)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("\n\n\t\tRequested Output\n\n\t\t" + string.Join(", ", finalSortedList) + "\n\n");
+                Console.WriteLine("\n\n\t\tRequested Output: \"" + outputSelection.FileName + "\" \"" + outputSelection.SortBy + "\" \"" + outputSelection.SortOrder + "\" \n\n\t\t Sorted Request: " + string.Join(", ", finalSortedList) + "\n\n");
                 Console.ForegroundColor = ConsoleColor.White;
             }
             else
@@ -160,131 +160,6 @@ namespace CSV_File_Reader
                 Console.WriteLine();
                 Console.WriteLine("\t" + menuSelectionNumber + ": " + availableValues[i] + "\n");
             }
-        }
-
-        /// <summary>
-        /// Takes values from outputSelect object, parses CSV file values array and orders to users request
-        /// </summary>
-        /// <param name="outputSelection">Object containing all neccessary values to create final sorted value</param>
-        /// <returns></returns>
-        /// <exception cref="Exception">If a user selects a non-allowed value that is not caught by logic</exception>
-        private List<string> FileContentsToRequestedList(OutputSelection outputSelection)
-        {
-            List<string> fileContentsList = GetListFromFileString(outputSelection.FileContents);
-            List<float> numericList = new List<float>();
-            List<string> alphaList = new List<string>();
-
-            fileContentsList.ForEach(fileContents =>
-            {
-                bool isString = fileContents.Contains("'") || fileContents.Contains("\"");
-
-                if (isString)
-                {
-                    alphaList.Add(fileContents);
-                }
-                else
-                {
-                    try
-                    {
-                        numericList.Add(float.Parse(fileContents));
-                    }
-                    catch
-                    {
-                        fileContents = fileContents.ToString();
-                        alphaList.Add(fileContents);
-                    }
-                }
-            });
-
-            switch (outputSelection.SortBy)
-            {
-                case "numeric":
-                    return NumericSorter(numericList, outputSelection.SortOrder);
-                case "alpha":
-                    return AlphaSorter(alphaList, outputSelection.SortOrder);
-                case "both":
-                    List<string> sortedAlphaList = AlphaSorter(alphaList, outputSelection.SortOrder);
-                    List<string> sortedNumericList = NumericSorter(numericList, outputSelection.SortOrder);
-                    sortedNumericList.AddRange(sortedAlphaList);
-                    return sortedNumericList;
-                default:
-                    throw new Exception("Selected type to order does not exist");
-            }
-        }
-
-        /// <summary>
-        /// Take CSV file data string, converts to an array
-        /// </summary>
-        /// <param name="fileContents">CSV File data string</param>
-        /// <returns>List of CSV file data rows</returns>
-        private List<string> GetListFromFileString(string fileContents)
-        {
-            List<string> fileContentList = new List<string>();
-            fileContents.Trim(new char[] { ' ', '\r', '\n' });
-            fileContentList = fileContents.Split(",").ToList();
-            return fileContentList;
-        }
-
-        /// <summary>
-        /// Take numeric array, sorts to requested order
-        /// </summary>
-        /// <param name="numericList">List of values to be sorted</param>
-        /// <param name="sortOrder">Order to sort values in</param>
-        /// <returns></returns>
-        private List<string> NumericSorter(List<float> numericList, string sortOrder)
-        {
-            List<string> stringifiedNumericList = new List<string>();
-            numericList.Sort();
-
-            if (sortOrder.ToLower().Equals("descending"))
-            {
-                numericList.Reverse();
-            }
-
-            numericList.ForEach(numericValue =>
-            {
-                stringifiedNumericList.Add(numericValue.ToString());
-            });
-
-            return stringifiedNumericList;
-        }
-
-        /// <summary>
-        /// Take alpha array, sorts to requested order
-        /// </summary>
-        /// <param name="numericList">List of values to be sorted</param>
-        /// <param name="sortOrder">Order to sort values in</param>
-        /// <returns></returns>
-        private List<string> AlphaSorter(List<string> alphaList, string sortOrder)
-        {
-            Dictionary<string, string> valueToRemoveQuotes = new Dictionary<string, string>();
-
-            for (int i = 0; i < alphaList.Count; i++)
-            {
-                string actualValue = alphaList[i];
-                string sortValue = alphaList[i].Trim(' ');
-                sortValue = alphaList[i].Replace("\"", "");
-                sortValue = alphaList[i].Replace("\'", "");
-                valueToRemoveQuotes.Add(sortValue, actualValue);
-                alphaList[i] = sortValue;
-
-            }
-
-            alphaList.Sort();
-
-            if (sortOrder.ToLower().Equals("descending"))
-            {
-                alphaList.Reverse();
-            }
-
-            foreach (var value in valueToRemoveQuotes)
-            {
-                int indexToUpdate = alphaList.IndexOf(value.Key.ToString());
-                alphaList[indexToUpdate] = value.Value.ToString();
-                alphaList[indexToUpdate] = alphaList[indexToUpdate].Trim(' ');
-            }
-
-            return alphaList;
         }
     }
 }

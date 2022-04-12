@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using CSV_File_Reader.Utilities;
+using CSV_File_Reader.Classes;
 
 namespace CSV_File_Reader.Utilities
 {
@@ -17,11 +18,8 @@ namespace CSV_File_Reader.Utilities
         /// <returns>string of request CSV data</returns>
         public string LoadCSV(string filename)
         {
-
             string selectedFileContents = System.IO.File.ReadAllText(Constants.FilePaths.CSVFolder + "/" + filename);
-
             return selectedFileContents;
-
         }
 
         /// <summary>
@@ -41,5 +39,72 @@ namespace CSV_File_Reader.Utilities
 
             return trimmedFileOptions;
         }
+
+        /// <summary>
+        /// Take CSV file data string, converts to an array
+        /// </summary>
+        /// <param name="fileContents">CSV File data string</param>
+        /// <returns>List of CSV file data rows</returns>
+        public List<string> GetListFromFileString(string fileContents)
+        {
+            List<string> fileContentList = new List<string>();
+            fileContents.Trim(new char[] { ' ', '\r', '\n' });
+            fileContentList = fileContents.Split(",").ToList();
+            return fileContentList;
+        }
+
+        /// <summary>
+        /// Takes values from outputSelect object, parses CSV file values array and orders to users request
+        /// </summary>
+        /// <param name="outputSelection">Object containing all neccessary values to create final sorted value</param>
+        /// <returns></returns>
+        /// <exception cref="Exception">If a user selects a non-allowed value that is not caught by logic</exception>
+        public List<string> FileContentsToRequestedList(OutputSelection outputSelection)
+        {
+            FileUtilities fileUtilities = new FileUtilities();
+            ListSorter listSorter = new ListSorter();
+
+            List<string> fileContentsList = fileUtilities.GetListFromFileString(outputSelection.FileContents);
+            List<float> numericList = new List<float>();
+            List<string> alphaList = new List<string>();
+
+            fileContentsList.ForEach(fileContents =>
+            {
+                bool isString = fileContents.Contains("'") || fileContents.Contains("\"");
+
+                if (isString)
+                {
+                    alphaList.Add(fileContents);
+                }
+                else
+                {
+                    try
+                    {
+                        numericList.Add(float.Parse(fileContents));
+                    }
+                    catch
+                    {
+                        fileContents = fileContents.ToString();
+                        alphaList.Add(fileContents);
+                    }
+                }
+            });
+
+            switch (outputSelection.SortBy)
+            {
+                case "numeric":
+                    return listSorter.Numeric(numericList, outputSelection.SortOrder);
+                case "alpha":
+                    return listSorter.Alpha(alphaList, outputSelection.SortOrder);
+                case "both":
+                    List<string> sortedAlphaList = listSorter.Alpha(alphaList, outputSelection.SortOrder);
+                    List<string> sortedNumericList = listSorter.Numeric(numericList, outputSelection.SortOrder);
+                    sortedNumericList.AddRange(sortedAlphaList);
+                    return sortedNumericList;
+                default:
+                    throw new Exception("Selected type to order does not exist");
+            }
+        }
+
     }
 }
