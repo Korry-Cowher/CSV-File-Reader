@@ -13,8 +13,7 @@ namespace CSV_File_Reader
     {
         /// <summary>
         /// Grabs array of all file options in CSV File Directory,
-        /// Displays the values,
-        /// Takes in user input of selection.
+        /// Displays the values, calls GetUserSelection to get user selection
         /// </summary>
         /// <returns>Name of file selected</returns>
         public string SelectFile()
@@ -64,7 +63,7 @@ namespace CSV_File_Reader
         }
 
         /// <summary>
-        /// Create sort by options array, calls method to output user select menu
+        /// Creates sort by array, calls method to output user select menu and gets index of users selection
         /// </summary>
         /// <returns>User selected sort by option</returns>
         public string SelectTypeToSort()
@@ -76,7 +75,7 @@ namespace CSV_File_Reader
         }
 
         /// <summary>
-        /// Create sort order options array, calls method to output user select menu
+        /// Creates sort order array, calls method to output user select menu and gets index of users selection
         /// </summary>
         /// <returns>User selected sort order option</returns>
         public string SelectSortOrder()
@@ -107,7 +106,7 @@ namespace CSV_File_Reader
         }
 
         /// <summary>
-        /// Displays specified message, then generates select menu based off of given array
+        /// Displays specified message, then calls method to generate select menu based off of given array
         /// </summary>
         /// <param name="availableValues">Array of string values to display in select menu</param>
         /// <param name="promptMessage">Message displayed before select menu</param>
@@ -146,12 +145,11 @@ namespace CSV_File_Reader
         }
 
         /// <summary>
-        /// Creates select menu for an string array
+        /// Creates select menu for a string array
         /// </summary>
         /// <param name="availableValues">Array of values to display in select menu</param>
         private void OutputSelectOptions(string[] availableValues)
         {
-
             Console.WriteLine("\nSelect from available options");
 
             for (int i = 0; i <= availableValues.Length - 1; i++)

@@ -36,7 +36,7 @@ namespace CSV_File_Reader.Utilities
         /// <summary>
         /// Take alpha array, sorts to requested order
         /// </summary>
-        /// <param name="numericList">List of values to be sorted</param>
+        /// <param name="alphaList">List of values to be sorted</param>
         /// <param name="sortOrder">Order to sort values in</param>
         /// <returns></returns>
         public List<string> Alpha(List<string> alphaList, string sortOrder)

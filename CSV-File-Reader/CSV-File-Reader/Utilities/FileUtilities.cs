@@ -15,7 +15,7 @@ namespace CSV_File_Reader.Utilities
         /// Grabs string value of CSV data
         /// </summary>
         /// <param name="filename">Name of file to grab data from</param>
-        /// <returns>string of request CSV data</returns>
+        /// <returns>string of requested CSV data</returns>
         public string LoadCSV(string filename)
         {
             string selectedFileContents = System.IO.File.ReadAllText(Constants.FilePaths.CSVFolder + "/" + filename);
@@ -23,9 +23,10 @@ namespace CSV_File_Reader.Utilities
         }
 
         /// <summary>
-        /// Grabs all CSV file options from selected path to directory
+        /// Grabs all CSV file options from selected directory
+        /// Directory location is set in FilePath constants class
         /// </summary>
-        /// <returns>List of all available file names</returns>
+        /// <returns>List of all available CSV file names within directory</returns>
         public List<string> GetFileOptions()
         {
             List<string> trimmedFileOptions = new List<string>();
@@ -41,7 +42,7 @@ namespace CSV_File_Reader.Utilities
         }
 
         /// <summary>
-        /// Take CSV file data string, converts to an array
+        /// Takes fileContents, converts to an List
         /// </summary>
         /// <param name="fileContents">CSV File data string</param>
         /// <returns>List of CSV file data rows</returns>
@@ -56,9 +57,8 @@ namespace CSV_File_Reader.Utilities
         /// <summary>
         /// Takes values from outputSelect object, parses CSV file values array and orders to users request
         /// </summary>
-        /// <param name="outputSelection">Object containing all neccessary values to create final sorted value</param>
+        /// <param name="outputSelection">Object containing all neccessary values to create final sorted list</param>
         /// <returns></returns>
-        /// <exception cref="Exception">If a user selects a non-allowed value that is not caught by logic</exception>
         public List<string> FileContentsToRequestedList(OutputSelection outputSelection)
         {
             FileUtilities fileUtilities = new FileUtilities();
