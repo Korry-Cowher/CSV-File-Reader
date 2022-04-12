@@ -12,16 +12,14 @@ namespace CSV_File_Reader
     internal class ClientCommunication
     {
         /// <summary>
-        /// 
+        /// Grabs array of all file options in CSV File Directory,
+        /// Displays the values,
+        /// Takes in user input of selection.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Name of file selected</returns>
         public string SelectFile()
         {
             FileUtilities fileUtilities = new FileUtilities();
-
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\n\n\t\tCSV Sorter");
-            Console.ForegroundColor = ConsoleColor.White;
 
             string[] fileOptions = fileUtilities.GetFileOptions().ToArray();
             int indexSelected = GetUserSelection(fileOptions, "Please select file");
@@ -29,7 +27,11 @@ namespace CSV_File_Reader
             return fileOptions[indexSelected];
         }
 
-        public void generateRequestedOutput(OutputSelection outputSelection)
+        /// <summary>
+        /// Grabs all necessary data and calls necessary methods to create and order requested values
+        /// </summary>
+        /// <param name="outputSelection">Object which contains all values necessary to complete sorting of values</param>
+        public void GenerateRequestedOutput(OutputSelection outputSelection)
         {
             FileUtilities fileUtilities = new FileUtilities();
             List<string> finalSortedList = new List<string>();
@@ -44,7 +46,7 @@ namespace CSV_File_Reader
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(ex.Message, Console.ForegroundColor);
                 Console.ForegroundColor = ConsoleColor.White;
-                generateClientExitMenu();
+                GenerateClientExitMenu();
             }
 
             if (finalSortedList.Count > 0)
@@ -61,6 +63,10 @@ namespace CSV_File_Reader
             }
         }
 
+        /// <summary>
+        /// Create sort by options array, calls method to output user select menu
+        /// </summary>
+        /// <returns>User selected sort by option</returns>
         public string SelectTypeToSort()
         {
             string[] sortByOptions = new[] { "alpha", "numeric", "both" };
@@ -69,6 +75,10 @@ namespace CSV_File_Reader
             return sortByOptions[indexSelected];
         }
 
+        /// <summary>
+        /// Create sort order options array, calls method to output user select menu
+        /// </summary>
+        /// <returns>User selected sort order option</returns>
         public string SelectSortOrder()
         {
             string[] sortByOptions = new[] { "ascending", "descending" };
@@ -78,10 +88,10 @@ namespace CSV_File_Reader
         }
 
         /// <summary>
-        /// 
+        /// Creates user select menu to either exit program or sort another file
         /// </summary>
-        /// <returns></returns>
-        public bool generateClientExitMenu()
+        /// <returns>Boolean Value, if user would like to rerun program</returns>
+        public bool GenerateClientExitMenu()
         {
             string[] sortByOptions = new[] { "Sort Another File", "Exit" };
             int indexSelected = GetUserSelection(sortByOptions, "Would you like to sort another file?");
@@ -97,44 +107,48 @@ namespace CSV_File_Reader
         }
 
         /// <summary>
-        /// 
+        /// Displays specified message, then generates select menu based off of given array
         /// </summary>
-        /// <param name="availableValues"></param>
-        /// <param name="promptMessage"></param>
-        /// <returns></returns>
+        /// <param name="availableValues">Array of string values to display in select menu</param>
+        /// <param name="promptMessage">Message displayed before select menu</param>
+        /// <returns>Index of selected value in array</returns>
         private int GetUserSelection(string[] availableValues, string promptMessage)
         {
-            int fileIndexSelected;
+            int fileIndexSelected = 0;
             Console.Write("\n" + promptMessage + ": \n");
             OutputSelectOptions(availableValues);
+            bool acceptedInput = false;
 
-            while (true)
+            while (!acceptedInput)
             {
                 try
                 {
                     fileIndexSelected = Int32.Parse(Console.ReadLine());
-                    fileIndexSelected = fileIndexSelected - 1;
-
-                    if (fileIndexSelected < 0 || fileIndexSelected >= availableValues.Length)
-                    {
-                        OutputSelectOptions(availableValues);
-                    }
-                    else
-                    {
-                        break;
-                    }
                 }
                 catch
                 {
                     OutputSelectOptions(availableValues);
                 }
+
+                fileIndexSelected = fileIndexSelected - 1;
+
+                if (fileIndexSelected < 0 || fileIndexSelected >= availableValues.Length)
+                {
+                    OutputSelectOptions(availableValues);
+                }
+                else
+                {
+                    acceptedInput = true;
+                }
             }
+
             return fileIndexSelected;
         }
 
         /// <summary>
-        /// 
+        /// Creates select menu for an string array
         /// </summary>
+        /// <param name="availableValues">Array of values to display in select menu</param>
         private void OutputSelectOptions(string[] availableValues)
         {
 
@@ -149,9 +163,11 @@ namespace CSV_File_Reader
         }
 
         /// <summary>
-        /// 
+        /// Takes values from outputSelect object, parses CSV file values array and orders to users request
         /// </summary>
+        /// <param name="outputSelection">Object containing all neccessary values to create final sorted value</param>
         /// <returns></returns>
+        /// <exception cref="Exception">If a user selects a non-allowed value that is not caught by logic</exception>
         private List<string> FileContentsToRequestedList(OutputSelection outputSelection)
         {
             List<string> fileContentsList = GetListFromFileString(outputSelection.FileContents);
@@ -160,23 +176,23 @@ namespace CSV_File_Reader
 
             fileContentsList.ForEach(fileContents =>
             {
-                //change to if else
-                switch (fileContents.Contains("'") || fileContents.Contains("\""))
+                bool isString = fileContents.Contains("'") || fileContents.Contains("\"");
+
+                if (isString)
                 {
-                    case true:
+                    alphaList.Add(fileContents);
+                }
+                else
+                {
+                    try
+                    {
+                        numericList.Add(float.Parse(fileContents));
+                    }
+                    catch
+                    {
+                        fileContents = fileContents.ToString();
                         alphaList.Add(fileContents);
-                        break;
-                    case false:
-                        try
-                        {
-                            numericList.Add(float.Parse(fileContents));
-                        }
-                        catch
-                        {
-                            fileContents = fileContents.ToString();
-                            alphaList.Add(fileContents);
-                        }
-                        break;
+                    }
                 }
             });
 
@@ -196,6 +212,11 @@ namespace CSV_File_Reader
             }
         }
 
+        /// <summary>
+        /// Take CSV file data string, converts to an array
+        /// </summary>
+        /// <param name="fileContents">CSV File data string</param>
+        /// <returns>List of CSV file data rows</returns>
         private List<string> GetListFromFileString(string fileContents)
         {
             List<string> fileContentList = new List<string>();
@@ -204,6 +225,12 @@ namespace CSV_File_Reader
             return fileContentList;
         }
 
+        /// <summary>
+        /// Take numeric array, sorts to requested order
+        /// </summary>
+        /// <param name="numericList">List of values to be sorted</param>
+        /// <param name="sortOrder">Order to sort values in</param>
+        /// <returns></returns>
         private List<string> NumericSorter(List<float> numericList, string sortOrder)
         {
             List<string> stringifiedNumericList = new List<string>();
@@ -222,6 +249,12 @@ namespace CSV_File_Reader
             return stringifiedNumericList;
         }
 
+        /// <summary>
+        /// Take alpha array, sorts to requested order
+        /// </summary>
+        /// <param name="numericList">List of values to be sorted</param>
+        /// <param name="sortOrder">Order to sort values in</param>
+        /// <returns></returns>
         private List<string> AlphaSorter(List<string> alphaList, string sortOrder)
         {
             Dictionary<string, string> valueToRemoveQuotes = new Dictionary<string, string>();

@@ -11,23 +11,23 @@ namespace CSV_File_Reader.Utilities
     internal class FileUtilities
     {
         /// <summary>
-        /// 
+        /// Grabs string value of CSV data
         /// </summary>
-        /// <param name="filename"></param>
-        /// <returns></returns>
+        /// <param name="filename">Name of file to grab data from</param>
+        /// <returns>string of request CSV data</returns>
         public string LoadCSV(string filename)
         {
-            
+
             string selectedFileContents = System.IO.File.ReadAllText(Constants.FilePaths.CSVFolder + "/" + filename);
-            
+
             return selectedFileContents;
 
         }
 
         /// <summary>
-        /// 
+        /// Grabs all CSV file options from selected path to directory
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of all available file names</returns>
         public List<string> GetFileOptions()
         {
             List<string> trimmedFileOptions = new List<string>();

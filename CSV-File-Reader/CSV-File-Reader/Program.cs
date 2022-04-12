@@ -16,22 +16,24 @@ namespace CSV_File_Reader
             FileUtilities fileUtilities = new FileUtilities();
             ClientCommunication clientCommunication = new ClientCommunication();
 
-            while (true)
+            Console.WriteLine("\n\n\t\tCSV Sorter");
+
+            bool rerunProgram = true;
+
+            while (rerunProgram)
             {
                 OutputSelection outputSelection = new OutputSelection();
                 outputSelection.FileName = clientCommunication.SelectFile();
                 outputSelection.SortBy = clientCommunication.SelectTypeToSort();
                 outputSelection.SortOrder = clientCommunication.SelectSortOrder();
 
-                clientCommunication.generateRequestedOutput(outputSelection);
+                clientCommunication.GenerateRequestedOutput(outputSelection);
 
-                bool sortAnotherFile = clientCommunication.generateClientExitMenu();
-
-                if (!sortAnotherFile)
-                {
-                    Environment.Exit(0);
-                }
+                rerunProgram = clientCommunication.GenerateClientExitMenu();
             }
+
+            Environment.Exit(0);
         }
     }
 }
+

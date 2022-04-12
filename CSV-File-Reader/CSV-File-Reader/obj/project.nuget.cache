@@ -1,11 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "x3vDXwBOv2sU6CfUfnHSsc3S142ZFb9R7s9MwiDgkB0cm4L+yEN9LU3+smTIgoqu/Q0dfdYyxruDFOFb6hkcqw==",
+  "dgSpecHash": "8aoTs6w7e/LswpMgTwWjGxMi/WBTKimVWsOT+JnzCc7Z/6t830os84QuMUxy0OVxxZAo3O8H9Ezm1FHOY+fHRg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\kcowher\\OneDrive - Professional Staffing Solutions, LLC\\Documents\\GitHub\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader.csproj",
+  "projectFilePath": "C:\\Users\\kcowh\\Repos\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\kcowher\\.nuget\\packages\\csvhelper\\27.2.1\\csvhelper.27.2.1.nupkg.sha512",
-    "C:\\Users\\kcowher\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.15\\microsoft.netcore.app.host.win-x64.5.0.15.nupkg.sha512"
+    "C:\\Users\\kcowh\\.nuget\\packages\\csvhelper\\27.2.1\\csvhelper.27.2.1.nupkg.sha512"
   ],
   "logs": []
 }
