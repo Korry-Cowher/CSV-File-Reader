@@ -120,24 +120,25 @@ namespace CSV_File_Reader
 
             while (!acceptedInput)
             {
-                try
-                {
-                    fileIndexSelected = Int32.Parse(Console.ReadLine());
-                }
-                catch
-                {
-                    OutputSelectOptions(availableValues);
-                }
+                string inputSelected = Console.ReadLine();
 
-                fileIndexSelected = fileIndexSelected - 1;
-
-                if (fileIndexSelected < 0 || fileIndexSelected >= availableValues.Length)
+                if(int.TryParse(inputSelected, out int result))
                 {
-                    OutputSelectOptions(availableValues);
-                }
+                    fileIndexSelected = Int32.Parse(inputSelected);
+                    fileIndexSelected = fileIndexSelected - 1;
+
+                    if (fileIndexSelected < 0 || fileIndexSelected >= availableValues.Length)
+                    {
+                        OutputSelectOptions(availableValues);
+                    }
+                    else
+                    {
+                        acceptedInput = true;
+                    }
+                } 
                 else
                 {
-                    acceptedInput = true;
+                    OutputSelectOptions(availableValues);
                 }
             }
 
