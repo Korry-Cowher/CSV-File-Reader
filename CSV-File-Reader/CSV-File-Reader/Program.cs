@@ -1,10 +1,4 @@
 ﻿using System;
-using CsvHelper;
-using System.IO;
-using System.Globalization;
-using System.Linq;
-using CSV_File_Reader.Utilities;
-using System.Collections.Generic;
 using CSV_File_Reader.Classes;
 
 namespace CSV_File_Reader
@@ -13,7 +7,6 @@ namespace CSV_File_Reader
     {
         static void Main(string[] args)
         {
-            FileUtilities fileUtilities = new FileUtilities();
             ClientCommunication clientCommunication = new ClientCommunication();
 
             Console.WriteLine("\n\n\t\tCSV Sorter");

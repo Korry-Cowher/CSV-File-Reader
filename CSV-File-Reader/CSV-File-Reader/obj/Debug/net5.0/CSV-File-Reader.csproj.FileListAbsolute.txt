@@ -34,3 +34,21 @@ C:\Users\kcowher\OneDrive - Professional Staffing Solutions, LLC\Documents\GitHu
 C:\Users\kcowher\OneDrive - Professional Staffing Solutions, LLC\Documents\GitHub\CSV-File-Reader\CSV-File-Reader\CSV-File-Reader\obj\Debug\net5.0\ref\CSV-File-Reader.dll
 C:\Users\kcowher\OneDrive - Professional Staffing Solutions, LLC\Documents\GitHub\CSV-File-Reader\CSV-File-Reader\CSV-File-Reader\obj\Debug\net5.0\CSV-File-Reader.pdb
 C:\Users\kcowher\OneDrive - Professional Staffing Solutions, LLC\Documents\GitHub\CSV-File-Reader\CSV-File-Reader\CSV-File-Reader\obj\Debug\net5.0\CSV-File-Reader.genruntimeconfig.cache
+C:\Users\kcowher\Repos\CSV-File-Reader\CSV-File-Reader\CSV-File-Reader\bin\Debug\net5.0\CSV-File-Reader.exe
+C:\Users\kcowher\Repos\CSV-File-Reader\CSV-File-Reader\CSV-File-Reader\bin\Debug\net5.0\CSV-File-Reader.deps.json
+C:\Users\kcowher\Repos\CSV-File-Reader\CSV-File-Reader\CSV-File-Reader\bin\Debug\net5.0\CSV-File-Reader.runtimeconfig.json
+C:\Users\kcowher\Repos\CSV-File-Reader\CSV-File-Reader\CSV-File-Reader\bin\Debug\net5.0\CSV-File-Reader.runtimeconfig.dev.json
+C:\Users\kcowher\Repos\CSV-File-Reader\CSV-File-Reader\CSV-File-Reader\bin\Debug\net5.0\CSV-File-Reader.dll
+C:\Users\kcowher\Repos\CSV-File-Reader\CSV-File-Reader\CSV-File-Reader\bin\Debug\net5.0\ref\CSV-File-Reader.dll
+C:\Users\kcowher\Repos\CSV-File-Reader\CSV-File-Reader\CSV-File-Reader\bin\Debug\net5.0\CSV-File-Reader.pdb
+C:\Users\kcowher\Repos\CSV-File-Reader\CSV-File-Reader\CSV-File-Reader\bin\Debug\net5.0\CsvHelper.dll
+C:\Users\kcowher\Repos\CSV-File-Reader\CSV-File-Reader\CSV-File-Reader\obj\Debug\net5.0\CSV-File-Reader.csproj.AssemblyReference.cache
+C:\Users\kcowher\Repos\CSV-File-Reader\CSV-File-Reader\CSV-File-Reader\obj\Debug\net5.0\CSV-File-Reader.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kcowher\Repos\CSV-File-Reader\CSV-File-Reader\CSV-File-Reader\obj\Debug\net5.0\CSV-File-Reader.AssemblyInfoInputs.cache
+C:\Users\kcowher\Repos\CSV-File-Reader\CSV-File-Reader\CSV-File-Reader\obj\Debug\net5.0\CSV-File-Reader.AssemblyInfo.cs
+C:\Users\kcowher\Repos\CSV-File-Reader\CSV-File-Reader\CSV-File-Reader\obj\Debug\net5.0\CSV-File-Reader.csproj.CoreCompileInputs.cache
+C:\Users\kcowher\Repos\CSV-File-Reader\CSV-File-Reader\CSV-File-Reader\obj\Debug\net5.0\CSV-File-Reader.csproj.CopyComplete
+C:\Users\kcowher\Repos\CSV-File-Reader\CSV-File-Reader\CSV-File-Reader\obj\Debug\net5.0\CSV-File-Reader.dll
+C:\Users\kcowher\Repos\CSV-File-Reader\CSV-File-Reader\CSV-File-Reader\obj\Debug\net5.0\ref\CSV-File-Reader.dll
+C:\Users\kcowher\Repos\CSV-File-Reader\CSV-File-Reader\CSV-File-Reader\obj\Debug\net5.0\CSV-File-Reader.pdb
+C:\Users\kcowher\Repos\CSV-File-Reader\CSV-File-Reader\CSV-File-Reader\obj\Debug\net5.0\CSV-File-Reader.genruntimeconfig.cache

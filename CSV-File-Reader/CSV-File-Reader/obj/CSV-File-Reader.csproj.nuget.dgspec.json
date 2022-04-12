@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kcowh\\Repos\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader.csproj": {}
+    "C:\\Users\\kcowher\\Repos\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kcowh\\Repos\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader.csproj": {
+    "C:\\Users\\kcowher\\Repos\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kcowh\\Repos\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader.csproj",
+        "projectUniqueName": "C:\\Users\\kcowher\\Repos\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader.csproj",
         "projectName": "CSV-File-Reader",
-        "projectPath": "C:\\Users\\kcowh\\Repos\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader.csproj",
-        "packagesPath": "C:\\Users\\kcowh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kcowh\\Repos\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader\\obj\\",
+        "projectPath": "C:\\Users\\kcowher\\Repos\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader.csproj",
+        "packagesPath": "C:\\Users\\kcowher\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kcowher\\Repos\\CSV-File-Reader\\CSV-File-Reader\\CSV-File-Reader\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kcowh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\kcowher\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -60,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

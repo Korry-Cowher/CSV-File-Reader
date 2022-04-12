@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-
 namespace CSV_File_Reader.Classes
 {
      class OutputSelection

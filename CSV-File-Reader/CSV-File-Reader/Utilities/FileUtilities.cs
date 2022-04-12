@@ -1,10 +1,7 @@
 ﻿using System;
-using CsvHelper;
 using System.IO;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using CSV_File_Reader.Utilities;
 using CSV_File_Reader.Classes;
 
 namespace CSV_File_Reader.Utilities
@@ -78,11 +75,11 @@ namespace CSV_File_Reader.Utilities
                 }
                 else
                 {
-                    try
+                    if (float.TryParse(fileContents, out float result))
                     {
                         numericList.Add(float.Parse(fileContents));
                     }
-                    catch
+                    else
                     {
                         fileContents = fileContents.ToString();
                         alphaList.Add(fileContents);
